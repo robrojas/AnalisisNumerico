@@ -13,7 +13,6 @@ public class Principal {
 				{4.0, 5.7},
 				{5.0, 8.4},
 			};
-		
 		MinimosCuadradosLogaritmicos minimos = new MinimosCuadradosLogaritmicosImp();
 		minimos.calcular(a);
 //		MinimosCuadradoExponencial minimos = new MinimosCuadradoExponencialImp();
