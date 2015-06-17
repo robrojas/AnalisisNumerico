@@ -22,6 +22,7 @@ public class AnalisisNumericoView extends JFrame {
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				try {
 					AnalisisNumericoView frame = new AnalisisNumericoView();
@@ -73,6 +74,7 @@ public class AnalisisNumericoView extends JFrame {
 		
 		JButton botonX = new JButton("+");
 		botonX.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				PanelValoresTabla p = new PanelValoresTabla();
 //				panelDatosXi.add(panelValoresTabla);

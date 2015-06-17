@@ -17,6 +17,7 @@ public class MinimosCuadradosLogaritmicosImp implements
 	private double sumaProductoXiYi = 0;
 	private double[][] tablaInicial;
 	
+	@Override
 	public double calcular(double[][] tablaInicial) {
 		this.tablaInicial = tablaInicial;
 		

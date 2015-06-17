@@ -1,6 +1,10 @@
 package segundoCorte.src;
 
-import java.util.List;
+import javax.swing.JOptionPane;
+
+import com.singularsys.jep.Jep;
+import com.singularsys.jep.JepException;
+
 
 public class TrapecioCompuestoImp implements TrapecioCompuesto {
 
@@ -8,26 +12,28 @@ public class TrapecioCompuestoImp implements TrapecioCompuesto {
 	public double trapecioCompuesto(double limInferior, 
 									double limSuperiorParcial, 
 									int iteraciones,
-									List<Object> funcion) 
+									String funcion) 
 	{
 		double limiteSuperior = calcularLimiteSuperior(limSuperiorParcial);
 		double tamanioDePaso = calcularTamanioDePaso(limInferior, limiteSuperior, iteraciones);
 		
-		Double[][] tabla = new Double[iteraciones + 1][2];
+		double[][] tabla = new double[iteraciones + 1][2];
 		tabla[0][0] = limInferior;
 		
+		/*calcular valorer de la columna Xm*/
 		for (int i = 1; i < iteraciones + 1; i++) {
-			for (int j = 0; j < 2; j = j + 2) {
-				tabla[i][j] = getXm(tabla[i - 1][j], tamanioDePaso);
-			}
+			tabla[i][0] = tabla[i - 1][0] + tamanioDePaso;
 		}
 		
-		tabla[0][1] = 1.0;
-		tabla[1][1] = 1.2148;
-		tabla[2][1] = 1.4408;
-		tabla[3][1] = 1.6779;
-		tabla[4][1] = 1.9268;
-		tabla[5][1] = 2.1880;
+		try {
+			tabla = calcularYm(funcion, tabla);
+		} catch (JepException e) {
+			JOptionPane.showMessageDialog(null, 
+										  "No se pudo parsear la funcion", 
+										  "Error en parseo",
+										  JOptionPane.ERROR_MESSAGE);
+			System.out.println("Error parseando la funcion: " + e);
+		}
 		
 		double resultado = getArea(tamanioDePaso, tabla, iteraciones);
 		
@@ -46,7 +52,6 @@ public class TrapecioCompuestoImp implements TrapecioCompuesto {
 		}
 		
 		System.out.println("Resultado final = " + resultado);
-		
 		return 0;
 	}
 	
@@ -75,18 +80,6 @@ public class TrapecioCompuestoImp implements TrapecioCompuesto {
 	}
 	
 	/**
-	 * 
-	 * @param xm Valor anterior de la tabla en la columna Xm.
-	 * @param tamanioDePaso Tamanio de paso.
-	 * @return Valoractual de Xm
-	 * @author Roberto Rojas
-	 * @fecha 01/06/2015
-	 */
-	private static double getXm(double xm, double tamanioDePaso) {
-		return xm + tamanioDePaso;
-	}
-	
-	/**
 	 * @param tamanioDePaso Tamanio de paso
 	 * @param tabla Tabla sobre la que se har&aacute; la interaci&oacute;n.
 	 * @param iteraciones Cantidad de interaciones que se har&aacute;n sobre la tabla.
@@ -94,7 +87,7 @@ public class TrapecioCompuestoImp implements TrapecioCompuesto {
 	 * @author Roberto Rojas
 	 * @fecha 01/06/2015
 	 */
-	private static double getArea(double tamanioDePaso, Double[][] tabla, int iteraciones) {
+	private static double getArea(double tamanioDePaso, double[][] tabla, int iteraciones) {
 
 		double sumatoria = 0; 
 		for (int i = 1; i <= iteraciones - 1; i++){
@@ -106,5 +99,19 @@ public class TrapecioCompuestoImp implements TrapecioCompuesto {
 		return (tamanioDePaso / 2) * (tabla[0][1] + tabla[iteraciones][1] + (2 * sumatoria));  
 		
 	}
+	
+	private static double[][] calcularYm(String funcion, double[][] tabla) throws JepException {
+		
+		for (int i = 0; i < tabla.length; i++) {
+			Jep jep = new Jep();
+			
+			/*Agregar variables al jep para el parseo de la funci&oacute;n*/
+			if (funcion.contains("x")) { jep.addVariable("x", tabla[i][0]); }
 
+			jep.parse(funcion);
+			tabla[i][1] = jep.evaluateD();
+		}
+		
+		return tabla;
+	}
 }
