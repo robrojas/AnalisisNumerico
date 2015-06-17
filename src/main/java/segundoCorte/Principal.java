@@ -1,25 +1,24 @@
 package segundoCorte;
 
+import javax.swing.JOptionPane;
+
 import segundoCorte.src.MinimosCuadradoExponencial;
 import segundoCorte.src.MinimosCuadradoExponencialImp;
 import segundoCorte.src.MinimosCuadradosLogaritmicos;
 import segundoCorte.src.MinimosCuadradosLogaritmicosImp;
 import segundoCorte.src.TrapecioCompuesto;
 import segundoCorte.src.TrapecioCompuestoImp;
+import segundoCorte.view.AnalisisNumericoView;
 
 
 public class Principal {
 	
 	public static void main(String[] args) {
 		
-		String funcion = "e^x + sin(x)";
-		int iteraciones = 5;
-		double limInferior = 0.0;
-		double limSuperior = 30;
+		trapecioCompuesto();
 		
-		TrapecioCompuesto metodo = new TrapecioCompuestoImp();
-		System.out.println("Trapecio Compuesto = " + metodo.trapecioCompuesto(limInferior, limSuperior, iteraciones, funcion));
-		
+		AnalisisNumericoView view = new AnalisisNumericoView();
+		view.setVisible(true);
 		MinimosCuadradosLogaritmicos cuadradoLog = new MinimosCuadradosLogaritmicosImp();
 		System.out.println("\nMinimos Cuadrados Logaritmicos:");
 		imprimir(cuadradoLog.calcular(getCuadradoLog()));
@@ -27,6 +26,21 @@ public class Principal {
 		MinimosCuadradoExponencial cuadradoExp = new MinimosCuadradoExponencialImp();
 		System.out.println("\nMinimos Cuadrados Exponenciales:");
 		imprimir(cuadradoExp.calcular(getCuadradoExp()));
+	}
+	
+	private static void trapecioCompuesto() {
+//		String funcion = "e^x + sin(x)";
+		String funcion = JOptionPane.showInputDialog(null, "Ingrese la funcion:","Entrada",JOptionPane.INFORMATION_MESSAGE);
+		
+		int iteraciones = 5;
+		double limInferior = 0.0;
+		double limSuperior = 30;
+		
+		TrapecioCompuesto metodo = new TrapecioCompuestoImp();
+		JOptionPane.showMessageDialog(null, 
+									  "Resultado = " + metodo.trapecioCompuesto(limInferior, limSuperior, iteraciones, funcion),
+									  "Método Trapecio Compuesto",
+									  JOptionPane.INFORMATION_MESSAGE);
 	}
 	
 	private static void imprimir(double[] tablaImprimir) {
