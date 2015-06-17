@@ -20,6 +20,6 @@ package segundoCorte.src;
  */
 public interface MinimosCuadradoExponencial {
 	
-	public double calcular(double[][] tablaInicial);
+	public double[] calcular(double[][] tabla);
 
 }

@@ -1,6 +1,5 @@
 package segundoCorte.src;
 
-import java.text.DecimalFormat;
 
 /**
  * Implementaci&oacute;n de la interfaz {@link MinimosCuadradoExponencial}
@@ -17,9 +16,8 @@ public class MinimosCuadradoExponencialImp implements MinimosCuadradoExponencial
 	private double tablaInicial[][];
 	
 	@Override
-	public double calcular(double[][] tablaInicial) {
-		this.tablaInicial = tablaInicial;
-		DecimalFormat formatoDecimal = new DecimalFormat("###,###.####");
+	public double[] calcular(double[][] tabla) {
+		this.tablaInicial = tabla;
 		
 		double[] yiLogaritmico = calcularYiLogaritmico();
 		calcularXiCuadrado();
@@ -29,19 +27,7 @@ public class MinimosCuadradoExponencialImp implements MinimosCuadradoExponencial
 		double b = calcularB(bLogaritmico);
 		double[] y = calcularY(b, m);
 
-		System.out.println("SumaXi =              " + formatoDecimal.format(sumaXi));
-		System.out.println("SumaYiLog =           " + formatoDecimal.format(sumaYiLogaritmico));
-		System.out.println("SumaXi� =             " + formatoDecimal.format(sumaXiCuadrado));
-		System.out.println("SumaProductoYiLogYi = " + formatoDecimal.format(sumaProcuctoYiLogXi));
-		System.out.println("SumaBLog =            " + formatoDecimal.format(bLogaritmico));
-		System.out.println("M =                   " + formatoDecimal.format(m));
-		System.out.println("B =                   " + formatoDecimal.format(b));
-		System.out.println("Y:");
-		for (int i = 0; i < y.length; i++) {
-			System.out.println("   y                " + (i+1) + " = " + formatoDecimal.format(y[i]));
-		}
-		
-		return 0;
+		return y;
 	}
 	
 	/**
@@ -119,7 +105,7 @@ public class MinimosCuadradoExponencialImp implements MinimosCuadradoExponencial
 	 * @author Roberto Rojas
 	 * @fecha 07/06/2015
 	 */
-	private double calcularB(double bLogaritmico) {
+	private static double calcularB(double bLogaritmico) {
 		return Math.exp(bLogaritmico);
 	}
 	

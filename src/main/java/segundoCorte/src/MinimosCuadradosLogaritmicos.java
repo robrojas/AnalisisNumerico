@@ -22,6 +22,6 @@ package segundoCorte.src;
 public interface MinimosCuadradosLogaritmicos {
 	
 	
-	public double calcular(double[][] tablaInicial);
+	public double[] calcular(double[][] tabla);
 
 }

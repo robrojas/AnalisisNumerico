@@ -16,8 +16,7 @@ public class CalculoMatematico {
 	 * @fecha 01/06/2015
 	 */
 	public double getSeno(double valor) {
-		double d =  Math.sin(valor);
-		return d;
+		return Math.sin(valor);
 	}
 	
 	/**
@@ -28,8 +27,7 @@ public class CalculoMatematico {
 	 * @fecha 01/06/2015
 	 */
 	public double get_Coseno(double valor) {
-		double d =  Math.cos(valor);
-		return d;
+		return Math.cos(valor);
 	}
 	
 	/**
@@ -40,8 +38,7 @@ public class CalculoMatematico {
 	 * @fecha 01/06/2015
 	 */
 	public double getTangente(double valor) {
-		double d =  Math.tan(valor);
-		return d;
+		return Math.tan(valor);
 	}
 	
 	/**
@@ -52,8 +49,7 @@ public class CalculoMatematico {
 	 * @fecha 01/06/2015
 	 */
 	public double getArcoCoseno(double valor) {
-		double d =  Math.acos(valor);
-		return d;
+		return Math.acos(valor);
 	}
 	
 	/**
@@ -64,8 +60,7 @@ public class CalculoMatematico {
 	 * @fecha 01/06/2015
 	 */
 	public double getArcoSeno(double valor) {
-		double d =  Math.asin(valor);
-		return d;
+		return Math.asin(valor);
 	}
 	
 	/**
@@ -76,8 +71,7 @@ public class CalculoMatematico {
 	 * @fecha 01/06/2015
 	 */
 	public double getArcoTangente(double valor) {
-		double d =  Math.atan(valor);
-		return d;
+		return Math.atan(valor);
 	}
 	
 	/**
@@ -87,9 +81,8 @@ public class CalculoMatematico {
 	 * @author Roberto Rojas
 	 * @fecha 01/06/2015
 	 */
-	public double getRaiz(@SuppressWarnings("unused") double valor) {
-		// TODO
-		return 0;
+	public double getRaiz(double valor) {
+		return Math.sqrt(valor);
 	}
 	
 	/**
@@ -100,8 +93,7 @@ public class CalculoMatematico {
 	 * @fecha 01/06/2015
 	 */
 	public double getLogaritmo(double valor) {
-		double d = Math.log(valor);
-		return d;
+		return Math.log(valor);
 	}
 	
 	/**
@@ -112,8 +104,7 @@ public class CalculoMatematico {
 	 * @fecha 01/06/2015
 	 */
 	public double getEuler(double valor) {
-		double d = Math.exp(valor);
-		return d;
+		return Math.exp(valor);
 	}
 	
 }

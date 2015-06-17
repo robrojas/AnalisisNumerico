@@ -35,24 +35,7 @@ public class TrapecioCompuestoImp implements TrapecioCompuesto {
 			System.out.println("Error parseando la funcion: " + e);
 		}
 		
-		double resultado = getArea(tamanioDePaso, tabla, iteraciones);
-		
-		System.out.println("Xm: ");
-		for (int i = 0; i < iteraciones + 1; i++) {
-			for (int j = 0; j < 2; j = j + 2) {
-				System.out.println("\t" + tabla[i][j]);
-			}
-		}
-		
-		System.out.println("Ym: ");
-		for (int i = 0; i < iteraciones + 1; i++) {
-			for (int j = 1; j < 2; j = j + 2) {
-				System.out.println("\t" + tabla[i][j]);
-			}
-		}
-		
-		System.out.println("Resultado final = " + resultado);
-		return 0;
+		return getArea(tamanioDePaso, tabla, iteraciones);
 	}
 	
 	/**

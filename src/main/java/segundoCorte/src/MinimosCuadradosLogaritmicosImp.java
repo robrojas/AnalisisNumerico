@@ -1,6 +1,5 @@
 package segundoCorte.src;
 
-import java.text.DecimalFormat;
 
 /**
  * Implementaci&oacute;n de la interfaz {@link MinimosCuadradosLogaritmicos}
@@ -18,10 +17,9 @@ public class MinimosCuadradosLogaritmicosImp implements
 	private double[][] tablaInicial;
 	
 	@Override
-	public double calcular(double[][] tablaInicial) {
-		this.tablaInicial = tablaInicial;
+	public double[] calcular(double[][] tabla) {
+		this.tablaInicial = tabla;
 		
-		DecimalFormat formatoDecimal = new DecimalFormat("###,###.####");
 		double[][] xiYi = calcularXiYi();
 		calcularCuadradoXi(xiYi);
 		calcularProductoXiYi(xiYi);
@@ -30,18 +28,7 @@ public class MinimosCuadradosLogaritmicosImp implements
 		double b = calcularB(bLogaritmo);
 		double[] y = calcularY(m, b);
 		
-		System.out.println("\nXi             = " + formatoDecimal.format(sumaXi));
-		System.out.println("Yi             = " + formatoDecimal.format(sumaYi));
-		System.out.println("CuadradoXi     = " + formatoDecimal.format(sumaCuadradoXi));
-		System.out.println("ProductoXiYi   = " + formatoDecimal.format(sumaProductoXiYi));
-		System.out.println("bLogaritmo     = " + formatoDecimal.format(bLogaritmo));
-		System.out.println("m              = " + formatoDecimal.format(m));
-		System.out.println("b              = " + formatoDecimal.format(b));
-		System.out.println("y:");
-		for (int i = 0; i < y.length; i++) {
-			System.out.println("  y" + (i+1) + "           = "+ formatoDecimal.format(y[i]));
-		}
-		return 0;
+		return y;
 	}
 
 	/**
