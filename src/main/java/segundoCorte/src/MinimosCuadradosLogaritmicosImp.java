@@ -39,7 +39,7 @@ public class MinimosCuadradosLogaritmicosImp implements
 		System.out.println("b              = " + formatoDecimal.format(b));
 		System.out.println("y:");
 		for (int i = 0; i < y.length; i++) {
-			System.out.println("  y" + i + "           = "+ formatoDecimal.format(y[i]));
+			System.out.println("  y" + (i+1) + "           = "+ formatoDecimal.format(y[i]));
 		}
 		return 0;
 	}

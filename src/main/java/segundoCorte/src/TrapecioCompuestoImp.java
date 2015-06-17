@@ -95,7 +95,6 @@ public class TrapecioCompuestoImp implements TrapecioCompuesto {
 				sumatoria = sumatoria + tabla[i][j];
 			}
 		}
-		System.out.println("Sumatoria = " + sumatoria);
 		return (tamanioDePaso / 2) * (tabla[0][1] + tabla[iteraciones][1] + (2 * sumatoria));  
 		
 	}

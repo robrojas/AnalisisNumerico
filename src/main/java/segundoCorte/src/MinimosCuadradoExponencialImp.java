@@ -38,7 +38,7 @@ public class MinimosCuadradoExponencialImp implements MinimosCuadradoExponencial
 		System.out.println("B =                   " + formatoDecimal.format(b));
 		System.out.println("Y:");
 		for (int i = 0; i < y.length; i++) {
-			System.out.println("                 y" + (i+1) + " = " + formatoDecimal.format(y[i]));
+			System.out.println("   y                " + (i+1) + " = " + formatoDecimal.format(y[i]));
 		}
 		
 		return 0;

@@ -1,5 +1,9 @@
 package segundoCorte;
 
+import segundoCorte.src.MinimosCuadradoExponencial;
+import segundoCorte.src.MinimosCuadradoExponencialImp;
+import segundoCorte.src.MinimosCuadradosLogaritmicos;
+import segundoCorte.src.MinimosCuadradosLogaritmicosImp;
 import segundoCorte.src.TrapecioCompuesto;
 import segundoCorte.src.TrapecioCompuestoImp;
 
@@ -13,37 +17,41 @@ public class Principal {
 		double limInferior = 0.0;
 		double limSuperior = 30;
 		
+		System.out.println("Trapecio Compuesto: \n");
+		
 		TrapecioCompuesto metodo = new TrapecioCompuestoImp();
 		metodo.trapecioCompuesto(limInferior, limSuperior, iteraciones, funcion);
-//		MinimosCuadradosLogaritmicos minimos = new MinimosCuadradosLogaritmicosImp();
-//		minimos.calcular(a);
-//		MinimosCuadradoExponencial minimos = new MinimosCuadradoExponencialImp();
-//		minimos.calcular(a);
+		
+		System.out.println("*********************************************\n");
+		
+		System.out.println("Minimos Cuadrado Logaritmico");
+		MinimosCuadradosLogaritmicos cuadradoLog = new MinimosCuadradosLogaritmicosImp();
+		cuadradoLog.calcular(getCuadradoLog());
+		
+		System.out.println("*********************************************\n");
+		
+		System.out.println("Minimos Cuadrado Exponencial");
+		MinimosCuadradoExponencial cuadradoExp = new MinimosCuadradoExponencialImp();
+		cuadradoExp.calcular(getCuadradoExp());
 	}
-	/**
-	 * Cadena de MinimoCuadradoLogaritmico:
-	 * 
-	 * 
-	 * double[][] a = new double[][] {  {1.0, 0.5}, 
-										{2.0, 1.7},
-										{3.0, 3.4},
-										{4.0, 5.7},
-										{5.0, 8.4},
-									};
-	 * 		
-	 */
 	
-	/**
-	 * Cadena de MinimoCuadradoExponenciales
-	 * 
-	 * 
-	 * double[][] a = new double[][] {  {1.0, 0.5}, 
+	private static double[][] getCuadradoLog() {
+		double[][] a = new double[][] {  {1.0, 0.5}, 
 				{2.0, 1.7},
 				{3.0, 3.4},
 				{4.0, 5.7},
 				{5.0, 8.4},
 			};
-	 * 		
-	 */
+		return a;
+	}
 	
+	private static double[][] getCuadradoExp() {
+		double[][] a = new double[][] {  {1.0, 0.5}, 
+				{2.0, 1.7},
+				{3.0, 3.4},
+				{4.0, 5.7},
+				{5.0, 8.4},
+			};
+		return a;
+	}
 }
