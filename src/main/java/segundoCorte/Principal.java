@@ -17,22 +17,22 @@ public class Principal {
 		double limInferior = 0.0;
 		double limSuperior = 30;
 		
-		System.out.println("Trapecio Compuesto: \n");
-		
 		TrapecioCompuesto metodo = new TrapecioCompuestoImp();
-		metodo.trapecioCompuesto(limInferior, limSuperior, iteraciones, funcion);
+		System.out.println("Trapecio Compuesto = " + metodo.trapecioCompuesto(limInferior, limSuperior, iteraciones, funcion));
 		
-		System.out.println("*********************************************\n");
-		
-		System.out.println("Minimos Cuadrado Logaritmico");
 		MinimosCuadradosLogaritmicos cuadradoLog = new MinimosCuadradosLogaritmicosImp();
-		cuadradoLog.calcular(getCuadradoLog());
+		System.out.println("\nMinimos Cuadrados Logaritmicos:");
+		imprimir(cuadradoLog.calcular(getCuadradoLog()));
 		
-		System.out.println("*********************************************\n");
-		
-		System.out.println("Minimos Cuadrado Exponencial");
 		MinimosCuadradoExponencial cuadradoExp = new MinimosCuadradoExponencialImp();
-		cuadradoExp.calcular(getCuadradoExp());
+		System.out.println("\nMinimos Cuadrados Exponenciales:");
+		imprimir(cuadradoExp.calcular(getCuadradoExp()));
+	}
+	
+	private static void imprimir(double[] tablaImprimir) {
+		for (int i = 0; i < tablaImprimir.length; i++) {
+			System.out.println("     y" + (i+1) + " = " + tablaImprimir[i]);
+		}
 	}
 	
 	private static double[][] getCuadradoLog() {
