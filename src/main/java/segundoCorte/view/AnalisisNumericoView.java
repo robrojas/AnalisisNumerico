@@ -5,6 +5,7 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -12,19 +13,19 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.JButton;
 
+
+@SuppressWarnings("serial")
 public class AnalisisNumericoView extends JFrame {
 
 	private JPanel contentPane;
 	private JTable table;
 
 	public AnalisisNumericoView() {
-		setLocationRelativeTo(null);
 		setTitle("Minimo Cuadrado Exponencial");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 400, 250);
+		setBounds(100, 100, 600, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -61,7 +62,11 @@ public class AnalisisNumericoView extends JFrame {
 		
 		table = new JTable();
 		table.setModel(new DefaultTableModel(
-			new Object[][] {
+			new Object[][] {  {1.0, 0.5}, 
+						{2.0, 1.7},
+						{3.0, 3.4},
+						{4.0, 5.7},
+						{5.0, 8.4},
 			},
 			new String[] {
 				"Xi", "Yi", "YiLog", "Xi\u00B2", "YiLog * Xi", "Y"
@@ -74,5 +79,7 @@ public class AnalisisNumericoView extends JFrame {
 		gbc_btnCalcular.gridx = 0;
 		gbc_btnCalcular.gridy = 3;
 		contentPane.add(btnCalcular, gbc_btnCalcular);
+		setLocationRelativeTo(null);
+		
 	}
 }
