@@ -10,32 +10,29 @@ import segundoCorte.src.MinimosCuadradosLogaritmicos;
 import segundoCorte.src.MinimosCuadradosLogaritmicosImp;
 import segundoCorte.src.TrapecioCompuesto;
 import segundoCorte.src.TrapecioCompuestoImp;
-import segundoCorte.view.AnalisisNumericoView;
+import segundoCorte.view.MinimosCuadradosView;
 
 
 public class Principal {
 	
 	public static void main(String[] args) {
-		
-		
 			
-//		trapecioCompuesto();
-//		
-//		AnalisisNumericoView view = new AnalisisNumericoView();
-//		view.setVisible(true);
-//		
-//		MinimosCuadradosLogaritmicos cuadradoLog = new MinimosCuadradosLogaritmicosImp();
-//		System.out.println("\nMinimos Cuadrados Logaritmicos:");
-//		imprimir(cuadradoLog.calcular(getCuadradoLog()));
-//		
-//		MinimosCuadradoExponencial cuadradoExp = new MinimosCuadradoExponencialImp();
-//		System.out.println("\nMinimos Cuadrados Exponenciales:");
-//		imprimir(cuadradoExp.calcular(getCuadradoExp()));
+		trapecioCompuesto();
+		
+		MinimosCuadradosView view = new MinimosCuadradosView(5);
+		view.setVisible(true);
+		
+		MinimosCuadradosLogaritmicos cuadradoLog = new MinimosCuadradosLogaritmicosImp();
+		System.out.println("\nMinimos Cuadrados Logaritmicos:");
+		imprimir(cuadradoLog.calcular(getCuadradoLog()));
+		
+		MinimosCuadradoExponencial cuadradoExp = new MinimosCuadradoExponencialImp();
+		System.out.println("\nMinimos Cuadrados Exponenciales:");
+		imprimir(cuadradoExp.calcular(getCuadradoExp()));
 		
 		MinCuadAproximacionAUnaRecta aprox = new MinCuadAproximacionAUnaRectaImp();
 		System.out.println("\n Minimos Cuadrados con Aproximacion a una recta: ");
 		imprimir(aprox.calcular(getCuadradoAprox()));
-//		
 	}
 	
 	private static void trapecioCompuesto() {

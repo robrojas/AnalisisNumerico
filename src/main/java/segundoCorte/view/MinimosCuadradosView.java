@@ -13,19 +13,21 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 
 @SuppressWarnings("serial")
-public class AnalisisNumericoView extends JFrame {
+public class MinimosCuadradosView extends JFrame {
 
 	private JPanel contentPane;
 	private JTable table;
 
-	public AnalisisNumericoView() {
+	public MinimosCuadradosView(int iteraciones) {
 		setTitle("Minimo Cuadrado Exponencial");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 600, 300);
+		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -61,15 +63,27 @@ public class AnalisisNumericoView extends JFrame {
 		contentPane.add(scrollPane, gbc_scrollPane);
 		
 		table = new JTable();
+		
+		/*Restringir los campos de la tabla a que solo se puedan ingreasar
+		 * n&uacute;meros y puntos*/
+		table.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				if (!(e.getKeyChar() == '.') && 
+					!Character.isDigit(e.getKeyChar()) || 
+					table.getSelectedColumn() == 2) 
+				{
+					e.consume();
+				}
+			}
+		});
+		
+		
+		
 		table.setModel(new DefaultTableModel(
-			new Object[][] {  {1.0, 0.5}, 
-						{2.0, 1.7},
-						{3.0, 3.4},
-						{4.0, 5.7},
-						{5.0, 8.4},
-			},
+			getArregloModeloTabla(iteraciones),
 			new String[] {
-				"Xi", "Yi", "YiLog", "Xi\u00B2", "YiLog * Xi", "Y"
+				"Xi", "Yi", "Y"
 			}
 		));
 		scrollPane.setViewportView(table);
@@ -79,7 +93,18 @@ public class AnalisisNumericoView extends JFrame {
 		gbc_btnCalcular.gridx = 0;
 		gbc_btnCalcular.gridy = 3;
 		contentPane.add(btnCalcular, gbc_btnCalcular);
+		btnCalcular.addActionListener(new CalcularMinimoscuadradosListener(this));
 		setLocationRelativeTo(null);
 		
+	}
+	
+	private Object[][] getArregloModeloTabla(int iteraciones) {
+		Object[][] arreglo = new Object[iteraciones][3];
+		for (int i = 0; i < arreglo.length; i++) {
+			for (int j = 0; j < 3; j++) {
+				arreglo[i][j] = "";
+			}
+		}
+		return arreglo;
 	}
 }
