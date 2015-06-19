@@ -2,37 +2,35 @@ package segundoCorte;
 
 import javax.swing.JOptionPane;
 
-import segundoCorte.src.MinCuadAproximacionAUnaRecta;
-import segundoCorte.src.MinCuadAproximacionAUnaRectaImp;
-import segundoCorte.src.MinimosCuadradoExponencial;
-import segundoCorte.src.MinimosCuadradoExponencialImp;
-import segundoCorte.src.MinimosCuadradosLogaritmicos;
-import segundoCorte.src.MinimosCuadradosLogaritmicosImp;
+import segundoCorte.src.IntegracionDesigual;
+import segundoCorte.src.IntegracionDesigualImp;
 import segundoCorte.src.TrapecioCompuesto;
 import segundoCorte.src.TrapecioCompuestoImp;
-import segundoCorte.view.MinimosCuadradosView;
 
 
 public class Principal {
 	
 	public static void main(String[] args) {
-			
-		trapecioCompuesto();
 		
-		MinimosCuadradosView view = new MinimosCuadradosView(5);
-		view.setVisible(true);
+		IntegracionDesigual integracion = new IntegracionDesigualImp();
+		System.out.println("Integracion Desigual: ");
+		System.out.println(integracion.calcular(getIntegracionDesigual()));
 		
-		MinimosCuadradosLogaritmicos cuadradoLog = new MinimosCuadradosLogaritmicosImp();
-		System.out.println("\nMinimos Cuadrados Logaritmicos:");
-		imprimir(cuadradoLog.calcular(getCuadradoLog()));
-		
-		MinimosCuadradoExponencial cuadradoExp = new MinimosCuadradoExponencialImp();
-		System.out.println("\nMinimos Cuadrados Exponenciales:");
-		imprimir(cuadradoExp.calcular(getCuadradoExp()));
-		
-		MinCuadAproximacionAUnaRecta aprox = new MinCuadAproximacionAUnaRectaImp();
-		System.out.println("\n Minimos Cuadrados con Aproximacion a una recta: ");
-		imprimir(aprox.calcular(getCuadradoAprox()));
+//		trapecioCompuesto();
+//		MinimosCuadradosView view = new MinimosCuadradosView(5);
+//		view.setVisible(true);
+//		
+//		MinimosCuadradosLogaritmicos cuadradoLog = new MinimosCuadradosLogaritmicosImp();
+//		System.out.println("\nMinimos Cuadrados Logaritmicos:");
+//		imprimir(cuadradoLog.calcular(getCuadradoLog()));
+//		
+//		MinimosCuadradoExponencial cuadradoExp = new MinimosCuadradoExponencialImp();
+//		System.out.println("\nMinimos Cuadrados Exponenciales:");
+//		imprimir(cuadradoExp.calcular(getCuadradoExp()));
+//		
+//		MinCuadAproximacionAUnaRecta aprox = new MinCuadAproximacionAUnaRectaImp();
+//		System.out.println("\n Minimos Cuadrados con Aproximacion a una recta: ");
+//		imprimir(aprox.calcular(getCuadradoAprox()));
 	}
 	
 	private static void trapecioCompuesto() {
@@ -86,6 +84,19 @@ public class Principal {
 				{4.0, 5.885},
 				{5.0, 4.985},
 				{6.0, 4.890},
+			};
+		return a;
+	}
+	
+	private static double[][] getIntegracionDesigual() {
+		double[][] a = new double[][] {  
+				{0.0, 0.0}, 
+				{0.1, 6.84},
+				{0.3, 4.0},
+				{0.5, 4.2},
+				{0.7, 5.51},
+				{0.95, 5.77},
+				{1.2, 1.0},
 			};
 		return a;
 	}
