@@ -2,23 +2,27 @@ package segundoCorte;
 
 import javax.swing.JOptionPane;
 
-import segundoCorte.src.IntegracionDesigual;
-import segundoCorte.src.IntegracionDesigualImp;
 import segundoCorte.src.TrapecioCompuesto;
 import segundoCorte.src.TrapecioCompuestoImp;
+import segundoCorte.view.SeleccionMetodoView;
 
 
 public class Principal {
 	
 	public static void main(String[] args) {
 		
-		IntegracionDesigual integracion = new IntegracionDesigualImp();
-		System.out.println("Integracion Desigual: ");
-		System.out.println(integracion.calcular(getIntegracionDesigual()));
+		SeleccionMetodoView principal = new SeleccionMetodoView();
+		principal.setVisible(true);
 		
-//		trapecioCompuesto();
+		
 //		MinimosCuadradosView view = new MinimosCuadradosView(5);
 //		view.setVisible(true);
+		
+//		IntegracionDesigual integracion = new IntegracionDesigualImp();
+//		System.out.println("Integracion Desigual: ");
+//		System.out.println(integracion.calcular(getIntegracionDesigual()));
+		
+//		trapecioCompuesto();
 //		
 //		MinimosCuadradosLogaritmicos cuadradoLog = new MinimosCuadradosLogaritmicosImp();
 //		System.out.println("\nMinimos Cuadrados Logaritmicos:");

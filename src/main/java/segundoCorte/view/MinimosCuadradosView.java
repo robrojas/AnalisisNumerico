@@ -22,6 +22,7 @@ public class MinimosCuadradosView extends JFrame {
 
 	private JPanel contentPane;
 	private JTable table;
+	private int cantidadPuntos; 
 
 	public MinimosCuadradosView(int iteraciones) {
 		setTitle("Minimo Cuadrado Exponencial");
@@ -69,11 +70,23 @@ public class MinimosCuadradosView extends JFrame {
 		table.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyTyped(KeyEvent e) {
-				if (!(e.getKeyChar() == '.') && 
+				if (e.getKeyChar() == KeyEvent.VK_BACK_SPACE) {
+					String texto = (String) table.getModel().getValueAt(table.getSelectedRow(), table.getSelectedColumn());
+					if (!texto.contains(".") && cantidadPuntos != 0) {
+						cantidadPuntos = 0;
+					}
+				}
+				else if (e.getKeyChar() == '.' && cantidadPuntos == 1) {
+					e.consume();
+				}
+				else if (!(e.getKeyChar() == '.') &&
 					!Character.isDigit(e.getKeyChar()) || 
-					table.getSelectedColumn() == 2) 
+					table.getSelectedColumn() == 2)
 				{
 					e.consume();
+				}
+				if (e.getKeyChar() == '.' && cantidadPuntos == 0) {
+					cantidadPuntos = 1;
 				}
 			}
 		});
