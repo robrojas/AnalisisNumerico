@@ -2,6 +2,10 @@ package segundoCorte;
 
 import javax.swing.JOptionPane;
 
+import com.singularsys.jep.EvaluationException;
+import com.singularsys.jep.Jep;
+import com.singularsys.jep.ParseException;
+
 import segundoCorte.src.TrapecioCompuesto;
 import segundoCorte.src.TrapecioCompuestoImp;
 import segundoCorte.view.SeleccionMetodoView;
@@ -11,9 +15,22 @@ public class Principal {
 	
 	public static void main(String[] args) {
 		
+//		Jep jep = new Jep();
+//		try {
+//			jep.parse("2pi/2");
+//			System.out.println(jep.evaluate());
+//		} catch (ParseException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} catch (EvaluationException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+		
 		SeleccionMetodoView principal = new SeleccionMetodoView();
 		principal.setVisible(true);
-		
+//		
+//		
 		
 //		MinimosCuadradosView view = new MinimosCuadradosView(5);
 //		view.setVisible(true);

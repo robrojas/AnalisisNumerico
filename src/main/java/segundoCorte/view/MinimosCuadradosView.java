@@ -106,7 +106,6 @@ public class MinimosCuadradosView extends JFrame {
 		gbc_btnCalcular.gridx = 0;
 		gbc_btnCalcular.gridy = 3;
 		contentPane.add(btnCalcular, gbc_btnCalcular);
-		btnCalcular.addActionListener(new CalcularMinimoscuadradosListener(this));
 		setLocationRelativeTo(null);
 		
 	}
