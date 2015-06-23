@@ -1,14 +1,17 @@
 package segundoCorte.view;
 
+import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.Window;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 import javax.swing.JButton;
-import javax.swing.JFrame;
+import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -16,17 +19,11 @@ import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
-import segundoCorte.view.listener.MinimosCuadradosViewLisetener;
+import segundoCorte.view.listener.IntegracionDesigualViewListener;
 import utilidades.Documentacion;
-import utilidades.MinimosCuadradosTipos.tipos;
-
-import java.awt.FlowLayout;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-
 
 @SuppressWarnings("serial")
-public class MinimosCuadradosView extends JFrame {
+public class IntegracionDesigualView extends JDialog {
 
 	private JPanel contentPane;
 	private int cantidadPuntos; 
@@ -34,13 +31,12 @@ public class MinimosCuadradosView extends JFrame {
 	private int filaActual;
 	
 	public JTable tabla;
-	public tipos metodo;
 
-	public MinimosCuadradosView(Window parent, boolean modal, int iteraciones, String titulo, tipos metodo) {
-		setTitle(titulo);
-		this.metodo = metodo;
+	public IntegracionDesigualView(Window parent, boolean modal, int iteraciones) {
+		setTitle("Integración Desigual");
 		setResizable(false);
-		setBounds(100, 100, 475, 230);
+		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+		setBounds(100, 100, 350, 230);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -68,7 +64,6 @@ public class MinimosCuadradosView extends JFrame {
 		contentPane.add(scrollPane, gbc_scrollPane);
 		
 		tabla = new JTable();
-		tabla.setCellSelectionEnabled(true);
 		
 		/*Restringir los campos de la tabla a que solo se puedan ingreasar
 		 * n&uacute;meros y puntos*/
@@ -104,7 +99,7 @@ public class MinimosCuadradosView extends JFrame {
 		tabla.setModel(new DefaultTableModel(
 			getArregloModeloTabla(iteraciones),
 			new String[] {
-				"Xi", "Yi", "Y"
+				"Xi", "Yi"
 			}
 		));
 		scrollPane.setViewportView(tabla);
@@ -118,7 +113,7 @@ public class MinimosCuadradosView extends JFrame {
 		panel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
 		JButton btnCalcular = new JButton("Calcular");
-		btnCalcular.addActionListener(new MinimosCuadradosViewLisetener(this));
+		btnCalcular.addActionListener(new IntegracionDesigualViewListener(this));
 		panel.add(btnCalcular);
 		
 		JButton btnCerrar = new JButton("Cerrar");
@@ -131,7 +126,7 @@ public class MinimosCuadradosView extends JFrame {
 		
 		JButton btnAyuda = new JButton("Ayuda");
 		btnAyuda.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
+			public void actionPerformed(ActionEvent e) {
 				Documentacion doc = new Documentacion();
 				DocumentacionView docuView = new DocumentacionView(null, true, doc.getDocumentacion());
 				docuView.setVisible(true);
@@ -139,10 +134,10 @@ public class MinimosCuadradosView extends JFrame {
 		});
 		panel.add(btnAyuda);
 		setLocationRelativeTo(null);
-		
 	}
 	
 	private Object[][] getArregloModeloTabla(int iteraciones) {
+		
 		Object[][] arreglo = new Object[iteraciones][3];
 		for (int i = 0; i < arreglo.length; i++) {
 			for (int j = 0; j < 3; j++) {
@@ -153,6 +148,6 @@ public class MinimosCuadradosView extends JFrame {
 	}
 
 	/*** * Getters * ***/
-	public tipos getMetodo() { return metodo; }
 	public JTable getTable() { return tabla; }
+
 }

@@ -10,12 +10,11 @@ public class TrapecioCompuestoImp implements TrapecioCompuesto {
 
 	@Override
 	public double trapecioCompuesto(double limInferior, 
-									double limSuperiorParcial, 
+									double limSuperior, 
 									int iteraciones,
 									String funcion) 
 	{
-		double limiteSuperior = calcularLimiteSuperior(limSuperiorParcial);
-		double tamanioDePaso = calcularTamanioDePaso(limInferior, limiteSuperior, iteraciones);
+		double tamanioDePaso = calcularTamanioDePaso(limInferior, limSuperior, iteraciones);
 		
 		double[][] tabla = new double[iteraciones + 1][2];
 		tabla[0][0] = limInferior;
@@ -34,7 +33,7 @@ public class TrapecioCompuestoImp implements TrapecioCompuesto {
 										  JOptionPane.ERROR_MESSAGE);
 			System.out.println("Error parseando la funcion: " + e);
 		}
-		
+		// (e ^ ((-x ^ 2 )) / 2) * (1 / sqrt(2 * pi))
 		return getArea(tamanioDePaso, tabla, iteraciones);
 	}
 	
@@ -79,7 +78,6 @@ public class TrapecioCompuestoImp implements TrapecioCompuesto {
 			}
 		}
 		return (tamanioDePaso / 2) * (tabla[0][1] + tabla[iteraciones][1] + (2 * sumatoria));  
-		
 	}
 	
 	private static double[][] calcularYm(String funcion, double[][] tabla) throws JepException {

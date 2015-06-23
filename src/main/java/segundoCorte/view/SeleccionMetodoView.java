@@ -4,20 +4,19 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JButton;
 
 import segundoCorte.view.listener.SeleccionarMetodoListener;
-
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 @SuppressWarnings("serial")
 public class SeleccionMetodoView extends JFrame {
@@ -61,9 +60,9 @@ public class SeleccionMetodoView extends JFrame {
 		gbc_panel_1.gridx = 1;
 		gbc_panel_1.gridy = 0;
 		panel.add(panel_1, gbc_panel_1);
-		
-		rbtnTabla.setSelected(true);
+		rbtnTabla.setEnabled(false);
 		panel_1.add(rbtnTabla);
+		rbtnFormula.setEnabled(false);
 		
 		panel_1.add(rbtnFormula);
 		
@@ -94,6 +93,11 @@ public class SeleccionMetodoView extends JFrame {
 		gbc_comboBox.fill = GridBagConstraints.HORIZONTAL;
 		gbc_comboBox.gridx = 0;
 		gbc_comboBox.gridy = 1;
+		metodosComboBox.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				habilitarRadioButtons();
+			}
+		});
 		panel.add(metodosComboBox, gbc_comboBox);
 		
 		JPanel panel_2 = new JPanel();
@@ -130,6 +134,28 @@ public class SeleccionMetodoView extends JFrame {
 		modeloComboBox.addElement("Mínimo Cuadrado con Aproximación a una Recta");
 		modeloComboBox.addElement("Integración Desigual");
 		metodosComboBox.setModel(modeloComboBox);
+	}
+	
+	private void habilitarRadioButtons() {
+			
+		if (metodosComboBox.getSelectedIndex() == 0) {
+			rbtnTabla.setSelected(false);
+			rbtnFormula.setSelected(false);
+			rbtnTabla.setEnabled(false);
+			rbtnFormula.setEnabled(false);
+		}
+		else if (metodosComboBox.getSelectedIndex() == 1) {
+			rbtnFormula.setEnabled(true);
+			rbtnTabla.setEnabled(true);
+			rbtnFormula.setSelected(true);
+		}
+		
+		else {
+			rbtnFormula.setSelected(false);
+			rbtnFormula.setEnabled(false);
+			rbtnTabla.setEnabled(true);
+			rbtnTabla.setSelected(true);
+		}
 	}
 
 	/*** * Getters * ***/

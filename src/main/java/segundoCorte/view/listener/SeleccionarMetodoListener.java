@@ -1,14 +1,17 @@
 package segundoCorte.view.listener;
 
+import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javafx.scene.control.ComboBox;
-
 import javax.swing.JOptionPane;
 
+import segundoCorte.view.IntegracionDesigualView;
+import segundoCorte.view.MinimosCuadradosView;
 import segundoCorte.view.SeleccionMetodoView;
+import segundoCorte.view.TrapecioCompuestoTablaView;
 import segundoCorte.view.TrapecioCompuestoView;
+import utilidades.MinimosCuadradosTipos.tipos;
 
 public class SeleccionarMetodoListener implements ActionListener {
 
@@ -26,11 +29,19 @@ public class SeleccionarMetodoListener implements ActionListener {
 			mensajeComboBox();
 		}
 		else {
-			levantarVista();
-			resetearValores();
+			while(true) {
+				try {
+					levantarVista(Integer.parseInt(JOptionPane.showInputDialog(view, "Ingrese el número de iteraciones: ","Análisis Numerico",JOptionPane.INFORMATION_MESSAGE)));
+					resetearValores();
+					break;
+				} catch (NumberFormatException e1) {
+					JOptionPane.showMessageDialog(view, "El valor ingresado es incorrecto, debe ingresar un número entero","Análisis Numerico",JOptionPane.ERROR_MESSAGE);
+				} catch (HeadlessException e1) {
+					JOptionPane.showMessageDialog(view, "El valor ingresado es incorrecto, debe ingresar un número entero","Análisis Numerico",JOptionPane.ERROR_MESSAGE);
+				}
+			}
 		}
 	}
-	
 	private void mensajeComboBox() {
 		JOptionPane.showMessageDialog(view,
 								      "Debe seleccionar un m\u00e9todo de la lista",
@@ -38,41 +49,49 @@ public class SeleccionarMetodoListener implements ActionListener {
 								      JOptionPane.ERROR_MESSAGE);
 	}
 	
-	private void levantarVista() {
+	private void levantarVista(int iteraciones) {
+		JOptionPane.showMessageDialog(view, 
+				 "Es importante que antes de llenar los campos consulte la documentacón. Estará disponible en el botón ayuda",
+                "Atenión", 
+                JOptionPane.WARNING_MESSAGE); 
 		
 		if (view.getMetodosComboBox().getSelectedItem().equals("Trapecio Compuesto")) {
-			TrapecioCompuestoView trapecio = new TrapecioCompuestoView(view, true);
-			trapecio.setVisible(true);
+			
+			if (view.getRbtnFormula().isSelected()) {
+				TrapecioCompuestoView trapecio = new TrapecioCompuestoView(view, true, iteraciones);
+				trapecio.setVisible(true);
+			}
+			else {
+				TrapecioCompuestoTablaView trapecioTabla = new TrapecioCompuestoTablaView(view, true, iteraciones);
+				trapecioTabla.setVisible(true);
+			}
 		}
 		
 		if (view.getMetodosComboBox().getSelectedItem().equals("Mínimo Cuadrado Exponencial")) {
-			// TODO
+			MinimosCuadradosView minimos = new MinimosCuadradosView(view, true, iteraciones, "Mínimo Cuadrado Exponencial", tipos.EXPONENCIAL);
+			minimos.setVisible(true);
 		}
 		
 		if (view.getMetodosComboBox().getSelectedItem().equals("Mínimo Cuadrado Logarítmico")) {
-			// TODO
+			MinimosCuadradosView minimos = new MinimosCuadradosView(view, true, iteraciones, "Mínimo Cuadrado Logarítmico", tipos.LOGARITMICO);
+			minimos.setVisible(true);
 		}
 		
 		if (view.getMetodosComboBox().getSelectedItem().equals("Mínimo Cuadrado con Aproximación a una Recta")) {
-			// TODO
+			MinimosCuadradosView minimos = new MinimosCuadradosView(view, true, iteraciones, "Mínimo Cuadrado con Aproximación a una Recta", tipos.APROXIMACION);
+			minimos.setVisible(true);
 		}
 		
 		if (view.getMetodosComboBox().getSelectedItem().equals("Integración Desigual")) {
-			// TODO
+			IntegracionDesigualView integracion = new IntegracionDesigualView(view, true, iteraciones);
+			integracion.setVisible(true);
 		}
 	}
 	
 	private void resetearValores() {
 		view.getMetodosComboBox().setSelectedIndex(0);
-		view.rbtnTabla.setSelected(true);
+		view.rbtnTabla.setSelected(false);
 		view.rbtnFormula.setSelected(false);
 	}
 
 }
-
-//modeloComboBox.addElement("Seleccionar...");
-//modeloComboBox.addElement("Trapecio Compuesto");
-//modeloComboBox.addElement("Mínimo Cuadrado Exponencial");
-//modeloComboBox.addElement("Mínimo Cuadrado Logarítmico");
-//modeloComboBox.addElement("Mínimo Cuadrado con Aproximación a una Recta");
-//modeloComboBox.addElement("Integración Desigual");

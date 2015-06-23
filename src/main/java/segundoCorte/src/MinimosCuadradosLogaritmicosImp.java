@@ -1,6 +1,5 @@
 package segundoCorte.src;
 
-
 /**
  * Implementaci&oacute;n de la interfaz {@link MinimosCuadradosLogaritmicos}
  * 
